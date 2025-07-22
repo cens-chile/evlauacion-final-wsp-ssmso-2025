@@ -1,0 +1,243 @@
+{
+    "resourceType": "Bundle",
+   "type": "transaccion",
+   "timestamp": "01-03-2025",
+    "entry": [
+        {
+            "fullUrl": "urn:uuid:3dcdfd57-92c8-43d9-9a89-acd1e4d5edd5",
+            "resource": {
+                "resourceType": "Patient",
+		"id": “patient-example”,
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Paciente</p></div>"
+                },
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Rojas Martínez",
+                        "given": [
+                            "Carlos Andres"
+                        ],
+			"text": "Carlos Andres Rojas Martinez"
+                    }
+                ],
+               "gender": "masculino",
+                "birthDate": "1973-01-31",
+                "identifier": [
+                    {
+                        "system": "https://registro-civil.cl/run",
+                        "value": "11222333-4"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Patient",
+               "ifNoneExist": "identifier=https://regcivil.cl/run|11222333-4"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:45e9b4a3-0418-4fdf-bd82-894ec016fd24",
+            "resource": {
+                "resourceType": "Practitioner",
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Practitioner</p></div>"
+                },
+                "name": [
+                    {
+                        "text": "Dr. Andrés Loyola"
+                    }
+                ],
+                "identifier": [
+                    {
+                        "system": "https://superdesalud.cl/rnpi",
+                        "value": "1234"
+                    }
+                ]
+            },
+            "request": {
+               "method": "GET",
+                "url": "Practitioner",
+               "ifNoneExist": "identifier=http://superdesalud.cl/rnpi|1234"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:fc043ac6-5bab-4d4c-9289-3bb9243c006b",
+            "resource": {
+                "resourceType": "Encounter",
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Encounter</p></div>"
+                },
+                "id": "consulta-1",
+                "identifier": [
+                    {
+                        "system": "https://cesfam-iturra/atenciones",
+                        "value": "ATN-1111"
+                    }
+                ],
+                "status": "finished",
+                "class": {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "code": "AMB"
+                },
+                "subject": {
+                    "reference": "urn:uuid:3dcdfd57-92c8-43d9-9a89-acd1e4d5edd5"
+                },
+                "participant": [
+                    {
+                        "individual": {
+                            "reference": "urn:uuid:45e9b4a3-0418-4fdf-bd82-894ec016fd24"
+                        }
+                    }
+                ],
+                "period": {
+                    "start": "2025-08-01T10:15:00",
+                    "end": "2025-08-01T10:40:00"
+                },
+                "serviceProvider": {
+                   "reference": "urn:uuid:9ca22511-22ed-4edb-b5d5-10f9d5781a98"
+                }
+            },
+            "request": {
+                "method": "POST",
+               "url": "Encounter/consulta-1",
+                "ifNoneExist": "identifier=https://cesfam-iturra/atenciones|ATN-1111"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:03482af3-1a4e-43a5-b905-187b5fd633f4",
+            "resource": {
+                "resourceType": "Condition",
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Condition</p></div>"
+                },
+                // "id": "condition1",
+                "verificationStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                          "code": "confirmed"
+                        }
+                    ]
+                },
+              "clinicalStatus": {
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "active"
+                        }
+                },
+                "code": {
+                    "coding": 
+                      {
+                            "system": "http://snomed.info/sct",
+                          "code": "",
+                          "display": ""
+                        }
+                    ,
+                    "text": "Sospecha de prediabetes"
+                },
+                "subject": {
+                  "reference": "http://test.techconnect.cl/fhir/Practitioner/example-practitioner"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:fc043ac6-5bab-4d4c-9289-3bb9243c006b"
+                },
+                "recordedDate": "2025-07-07"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Condition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:c670c423-6be9-45b7-a2c0-f522fbb75f3a",
+            "resource": {
+                "resourceType": "ServiceRequest",
+
+
+                "text": {
+                    "status": "generated",
+                  "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>ServiceRequest</p></div>"
+                },
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                              "system": "http://www.snomed.org",
+                                "code": "108252007",
+                                "display": "Laboratory procedure"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                          "code": "",
+                          "display": ""
+                        },
+                        {
+                            "system": "http://loinc.org",
+                            "code": "1558-6",
+                            "display": "Glucose [Mass/volume] in Serum or Plasma -- fasting"
+                        }
+                    ],
+                    "text": "Perfil lipídico y glicemia en ayunas"
+                },
+                "subject": {
+                   "reference": "/Patient/11222333-4" //Patient
+                },
+                "encounter": {
+                   "reference": "fc043ac6-5bab-4d4c-9289-3bb9243c006b" //Encounter
+                },
+                "authoredOn": "2025-07-07",
+                "requester": {
+                    "reference": "urn:uuid:45e9b4a3-0418-4fdf-bd82-894ec016fd24" //Practitioner
+                },
+                "reasonReference": [
+                    {
+                        "reference": "urn:uuid:03482af3-1a4e-43a5-b905-187b5fd633f4" //Condition
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+              "url": "/fhir/ServiceRequest"
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "Organization",
+                "id": "organization1",
+                "name": "CESFAM Segismundo Iturra",
+                "identifier": [
+                    {
+                      "systems": "https://minsal.cl/cesfams",
+                        "use": "CESFAM-SI001"
+                    }
+                ],
+                "address": [
+                    {
+                        "text": "San Felipe, Región de Valparaíso, Chile"
+                    }
+                ],
+                "text": {
+                    "status": "generated",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>CESFAM Segismundo Iturra</p></div>"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Organization",
+                "ifNoneExist": "identifier=http://minsal.cl/establecimientos|CESFAM-SI001"
+            }
+        }
+    ]
+}
